@@ -1,33 +1,37 @@
-<h2>My goals</h2>
-<ul>
+<h2>My goals:</h2>
+<ul class="goals">
   <li *ngFor="let goal of goals">
-    <button type="button" (click)="onShowDetail(goal)">
-      <span>{{ goal.id }}</span>
-      <span>{{ goal.title }}</span>
+    <button
+      [class.selected]="goal === selectedGoal"
+      type="button"
+      (click)="onShowDetail(goal)"
+    >
+      <span class="id">{{ goal.id }}</span>
+      <span class="title">{{ goal.title }}</span>
     </button>
   </li>
 </ul>
 <div *ngIf="selectedGoal">
   <h2>{{ selectedGoal.title | uppercase }} Details</h2>
   <div>id: {{ selectedGoal.id }}</div>
-  <div>
+  <div class="flex">
     <label for="title">Goal: </label>
     <input id="title" [(ngModel)]="selectedGoal.title" placeholder="title" />
   </div>
-  <div>
+  <div class="flex">
     <label for="startAt">Start at: </label>
     <input
       id="startAt"
-      ([ngModel])="(selectedGoal.startAt)"
+      [(ngModel)]="selectedGoal.startAt"
       [ngModel]="selectedGoal.startAt | date : 'yyyy-MM-dd'"
       placeholder="Start at"
     />
   </div>
-  <div>
+  <div class="flex">
     <label for="completeAt">Complete at: </label>
     <input
       id="completeAt"
-      ([ngModel])="(selectedGoal.completeAt)"
+      [(ngModel)]="selectedGoal.completeAt"
       [ngModel]="selectedGoal.completeAt | date : 'yyyy-MM-dd'"
       placeholder="complete at"
     />
