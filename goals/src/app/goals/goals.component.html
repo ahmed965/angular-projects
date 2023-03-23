@@ -1,0 +1,35 @@
+<h2>My goals</h2>
+<ul>
+  <li *ngFor="let goal of goals">
+    <button type="button" (click)="onShowDetail(goal)">
+      <span>{{ goal.id }}</span>
+      <span>{{ goal.title }}</span>
+    </button>
+  </li>
+</ul>
+<div *ngIf="selectedGoal">
+  <h2>{{ selectedGoal.title | uppercase }} Details</h2>
+  <div>id: {{ selectedGoal.id }}</div>
+  <div>
+    <label for="title">Goal: </label>
+    <input id="title" [(ngModel)]="selectedGoal.title" placeholder="title" />
+  </div>
+  <div>
+    <label for="startAt">Start at: </label>
+    <input
+      id="startAt"
+      ([ngModel])="(selectedGoal.startAt)"
+      [ngModel]="selectedGoal.startAt | date : 'yyyy-MM-dd'"
+      placeholder="Start at"
+    />
+  </div>
+  <div>
+    <label for="completeAt">Complete at: </label>
+    <input
+      id="completeAt"
+      ([ngModel])="(selectedGoal.completeAt)"
+      [ngModel]="selectedGoal.completeAt | date : 'yyyy-MM-dd'"
+      placeholder="complete at"
+    />
+  </div>
+</div>
